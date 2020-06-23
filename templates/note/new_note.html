@@ -1,0 +1,32 @@
+{% extends 'note/base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-4 offset-4">
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+                <form action="{% url 'note:add_topic' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Topic:</label>
+                        <input type="text" name="topic" class="form-control" placeholder="Topic">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+        </div>
+    </div>
+
+    {% endblock %}
+    
+</body>
+</html>

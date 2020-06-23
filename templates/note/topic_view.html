@@ -1,0 +1,48 @@
+{% extends 'note/base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .textbox{
+            border: 3px solid black;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+            padding: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="textbox">
+        {% block content %}
+        <b>{{topic}}</b>
+        <ul>
+            {% for note in notes %}
+                <a href="{% url 'note:update_note' note.id %}"><li>{{note}}</li></a>
+                
+            {% endfor %}
+            <div class="dropdown">
+                <a type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <u>Add Note</u>
+                </a>
+                <form method="POST" action="{% url 'note:add_note' topic.id %}">
+                    {% csrf_token %}
+                    <div class=" form-group dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <input name="note" type="text"><button type="submit" class="btn">Add</button>
+                    </div>
+                </form>
+            </div>
+        </ul>
+            
+    </div>
+  
+
+    {% endblock %}
+    
+</body>
+</html>

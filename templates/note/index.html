@@ -1,0 +1,37 @@
+{% extends 'note/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doc</title>
+</head>
+<body>
+  {% block content %}
+            <div class="dropup" style ="position: absolute; bottom: 0;right: 0; margin-bottom: 10px; margin-right: 35px;" class="menu pmd-floating-action"  role="navigation" >
+                  <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" href="{% url 'note:add_topic' %}" type="button" > 
+                    <i class="material-icons pmd-sm">add</i> 
+                  </a>
+            </div>
+
+    {% for topic in topics %}
+    <div class="textbox">
+    <ul>
+            <b><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a href="delete/{{topic.id}}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
+            {% for note in topic.one.all %}
+            <li>
+                {{note}}
+            </li>
+
+            {% endfor %}
+    </ul>
+    </div>
+    {% endfor %}
+
+    {% endblock %}
+
+
+
+</body>
+</html>
