@@ -33,7 +33,7 @@
                 <form method="POST" action="{% url 'note:add_note' topic.id %}">
                     {% csrf_token %}
                     <div class=" form-group dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <input name="note" type="text"><button type="submit" class="btn">Add</button>
+                        <input name="note" required="required!" type="text"><button type="submit" class="btn">Add</button>
                     </div>
                 </form>
             </div>

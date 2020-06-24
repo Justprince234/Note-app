@@ -18,7 +18,7 @@
     {% for topic in topics %}
     <div class="textbox">
     <ul>
-            <b><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a href="delete/{{topic.id}}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
+            <b><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a onclick="return confirm('Are you sure?')" href="delete/{{topic.id}}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
             {% for note in topic.one.all %}
             <li>
                 {{note}}
