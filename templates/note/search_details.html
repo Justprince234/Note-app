@@ -36,7 +36,7 @@
                   </ul>
                 </div>
               </nav>
-    <h2>Search Results</h2>
+    <h2>Search Result(s)</h2>
 
     {% for message in messsages %}
 
@@ -48,7 +48,7 @@
 
       {% for topic in topic_results %} 
       <ul>
-          <b>{{topic.topic}}</b>
+        <b><a href="{% url 'note:topic_view' topic.id %}">{{topic.topic}}</a></b><a onclick="return confirm('Proceed with delete?')" href="delete/{{topic.id}}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
       
           {% for note in topic.one.all %}
           <li>
