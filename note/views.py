@@ -74,8 +74,7 @@ def search(request):
         template = 'note/search_details.html'
         query = request.GET.get('q')
         topic_results = Topic.objects.filter(Q(topic__icontains=query))
-        notes_results = Note.objects.filter(Q(note__icontains=query))
-        context = {'topic_results': topic_results, 'notes_results': notes_results}
+        context = {'topic_results': topic_results}
 
         return render(request, template, context)
     
