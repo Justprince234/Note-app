@@ -9,7 +9,7 @@
 </head>
 <body>
   {% block content %}
-            <div class="dropup" style ="position: absolute; bottom: 0;right: 0; margin-bottom: 10px; margin-right: 35px;" class="menu pmd-floating-action"  role="navigation" >
+            <div class="dropup" style ="position: fixed; bottom: 0;right: 0; margin-bottom: 10px; margin-right: 35px;" class="menu pmd-floating-action"  role="navigation" >
                   <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" href="{% url 'note:add_topic' %}" type="button" > 
                     <i class="material-icons pmd-sm">add</i> 
                   </a>
@@ -18,7 +18,7 @@
     {% for topic in topics %}
     <div class="textbox">
     <ul>
-            <b><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a onclick="return confirm('Are you sure?')" href="delete/{{topic.id}}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
+            <b><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a onclick="return confirm('Proceed with delete?')" href="delete/{{topic.id}}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
             {% for note in topic.one.all %}
             <li>
                 {{note}}
