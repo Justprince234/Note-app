@@ -45,7 +45,7 @@ def add_topic(request):
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
             new_topic.save()
-            return redirect('note:add_note')
+            return redirect('note:home')
 
     return render(request, 'note/new_note.html')
 
