@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <title>Register</title>
+</head>
+<body>
+    <div style="margin-top: 10px;" class="container-fluid"><a href="{% url 'note:login' %}">Login</a></div>
+    
+    <div style="text-align: center; margin-top: 50px;">
+            <h2 style="color: blue">Register</h2>
+    </div>
+    <div class="row" style="margin-top: 80px;">
+        <div class="col-md-4 offset-4">
+            {% for message in messages %}
+            <p style="color: red">{{message}}</p>
+            {% endfor %}
+                <form action="{% url 'accounts:register' %}" method="POST">
+                  {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault01">First name</label>
+                            <input type="text" name="first_name" class="form-control" id="validationDefault01" placeholder="First name" required>
+                        </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="validationDefault02">Last name</label>
+                            <input type="text" name="last_name" class="form-control" id="validationDefault02" placeholder="Last name" required>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault01">Username</label>
+                            <input type="text" name="username" class="form-control" id="validationDefault01" placeholder="Username" required>
+                        </div>
+                              <div class="col-md-6 mb-3">
+                                <label for="validationDefault02">E-mail</label>
+                                <input type="email" name="email" class="form-control" id="validationDefault02" placeholder="E-mail" required>
+                              </div>
+                    </div>
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <label for="validationDefault03">Password</label>
+                            <input type="password" name="password" class="form-control" id="validationDefault03" placeholder="Password" required>
+                          </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault03">Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control" id="validationDefault03" placeholder="Confirm Password" required>
+                        </div>
+                        
+                          
+                        </div>
+                      
+                        <button class="btn btn-primary" type="submit">Register</button>
+                </form>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <title>Welcome</title>
+</head>
+<body>
+  <div style="text-align: center; margin-top: 50px;">
+    <h2 style="color: blue">TODO Notes</h2>
+  </div>
+  <div class="row" style="margin-top: 80px;">
+      <div class="col-md-4 offset-4">
+        {% for message in messages %}
+        <p style="color: red">{{message}}</p>
+        {% endfor %}
+          <form method="POST">
+            {% csrf_token %}
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
+                  <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Username">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox"> Remember me
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+              </div>
+          </form>
+          <div style="display: flex">
+           <div>
+             <p>Not Registered?</p>
+           </div>
+            <div class="col-sm-6">
+              <a href="{% url 'accounts:register'%}">Register</a>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

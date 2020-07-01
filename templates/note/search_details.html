@@ -22,19 +22,10 @@
 </head>
 <body>
         <nav class="navbar navbar-dark bg-primary">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <a class="navbar-brand font-weight-bold" href="#">Notes</a>
-                </button>
-                
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{% url 'note:home' %}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                  </ul>
+                <div class="container-fluid">
+                    <a class="navbar-brand font-weight-bold" href="{% url 'note:home' %}">Notes</a>
                 </div>
+            
               </nav>
     <h2>Search Result(s)</h2>
 
@@ -54,10 +45,14 @@
           <li>
               {{note.note}}
           </li>
-                  
-          {% endfor %}
+        {% endfor %}
     </ul>
-      {% endfor %}
+    {% empty %}
+    <ul>
+        <li><p style="color: red">Title not found!</p></li>
+    </ul>
+    
+    {% endfor %}
    
     </div>
 
