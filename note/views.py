@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import Http404
 from django.db.models import Q
 from django.contrib import messages
 from . models import Note, Topic
@@ -53,6 +54,9 @@ def add_topic(request):
 def topic_view(request, topic_id):
     """Dispays database objects from the Topic and Note tables."""
     topic = Topic.objects.get(id=topic_id)
+    # Confirms that the page belows to the owner
+    if topics.owner != topics.user:
+        raise Http404
     notes = topic.one.all()
     context = {'topic': topic, 'notes':notes}
     return render(request, 'note/topic_view.html', context)
