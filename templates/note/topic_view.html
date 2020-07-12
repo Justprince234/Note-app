@@ -6,40 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .textbox{
-            border: 3px solid black;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-top: 10px;
-            padding: auto;
-            border-radius: 10px;
-        }
-    </style>
+   
 </head>
 <body>
-    <div class="textbox">
+    
         {% block content %}
-        <b>{{topic}}</b>
-        <ul>
-            {% for note in notes %}
-                <a href="{% url 'note:update_note' note.id %}"><li>{{note}}</li></a>
-                
-            {% endfor %}
-            <div class="dropdown">
-                <a type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <u>Add Note</u>
-                </a>
-                <form method="POST" action="{% url 'note:add_note' topic.id %}">
-                    {% csrf_token %}
-                    <div class=" form-group dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <input name="note" required="required!" type="text"><button type="submit" class="btn">Add</button>
-                    </div>
-                </form>
+
+        <div class="row mb-2 posts container-fluid">
+                <div class="col-md-6">
+                    <div class="cards">
+                      <div class="row no-gutters border rounded  flex-md-row mb-4 shadow-sm h-md-250">
+                        <div class="col p-4 d-flex flex-column position-static">
+                          <h3 class="my-1"><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a onclick="return confirm('Proceed with delete?')" href="{% url 'note:delete' topic.id %}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a></h3>
+                            {% for note in topic.one.all %}
+                                <a href="{% url 'note:update_note' note.id %}"><li>{{note}}</li></a>
+                            {% endfor %}
+                            <div class="dropdown">
+                                <a type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <u>Add Note</u>
+                                </a>
+                                <form method="POST" action="{% url 'note:add_note' topic.id %}">
+                                    {% csrf_token %}
+                                    <div class=" form-group dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <input name="note" required="required!" type="text"><button type="submit" class="btn">Add</button>
+                                    </div>
+                                </form>
+                            </div>  
+                          </div>
+                        </div>
+                    </div>       
+                </div>
             </div>
-        </ul>
-            
-    </div>
+
+    
   
 
     {% endblock %}

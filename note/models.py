@@ -13,7 +13,7 @@ class Topic(models.Model):
 class Note(models.Model):
     """Create an instance of Note in database."""
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='one', null=True)
-    note = models.TextField(unique=True)
+    note = models.TextField()
 
     def __str__(self):
         return self.note

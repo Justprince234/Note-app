@@ -8,26 +8,33 @@
     <title>Doc</title>
 </head>
 <body>
+
   {% block content %}
-            <div class="dropup" style ="position: fixed; bottom: 0;right: 0; margin-bottom: 10px; margin-right: 35px;" class="menu pmd-floating-action"  role="navigation" >
+            <div style ="position: fixed; bottom: 0;right: 0; margin-bottom: 10px; margin-right: 35px; z-index: 100 !important;" class="menu pmd-floating-action"  role="navigation" >
                   <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" href="{% url 'note:add_topic' %}" type="button" > 
                     <i class="material-icons pmd-sm">add</i> 
                   </a>
             </div>
 
-    {% for topic in topics %}
-    <div class="textbox">
-    <ul>
-            <b><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a onclick="return confirm('Proceed with delete?')" href="{% url 'note:delete' topic.id %}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
-            {% for note in topic.one.all %}
-            <li>
-                {{note}}
-            </li>
 
+        <div class="row mb-2 posts container-fluid">
+            {% for topic in topics %}
+            <div class="col-md-6 ">
+                <div class="cards">
+                  <div class="row no-gutters border rounded  flex-md-row mb-4 shadow-sm h-md-250">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <h3 class="my-1"><a href="{% url 'note:topic_view' topic.id %}">{{topic}}</a></b><a onclick="return confirm('Proceed with delete?')" href="{% url 'note:delete' topic.id %}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a></h3>
+                        {% for note in topic.one.all %}
+                        <li>
+                            {{note}}
+                        </li>
+                        {% endfor %}  
+                      </div>
+                    </div>
+                </div>       
+            </div>
             {% endfor %}
-    </ul>
-    </div>
-    {% endfor %}
+        </div>
 
     {% endblock %}
 

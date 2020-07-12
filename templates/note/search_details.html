@@ -8,17 +8,6 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <title>My Note</title>
-
-    <style>
-        .textbox{
-            border: 3px solid black;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-top: 10px;
-            padding: auto;
-            border-radius: 10px;
-        }
-    </style>
 </head>
 <body>
         <nav class="navbar navbar-dark bg-primary">
@@ -29,32 +18,29 @@
               </nav>
     <h2>Search Result(s)</h2>
 
-    {% for message in messsages %}
+    <div class="row mb-2 posts container-fluid">
+            {% for topic in topic_results %} 
+            <div class="col-md-6 ">
+                <div class="cards">
+                  <div class="row no-gutters border rounded  flex-md-row mb-4 shadow-sm h-md-250">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <h3 class="my-1"><a href="{% url 'note:topic_view' topic.id %}">{{topic.topic}}</a></b><a onclick="return confirm('Proceed with delete?')" href="{% url 'note:delete' topic.id %}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a></h3>
+                        {% for note in topic.one.all %}
+                        <li>
+                            {{note.note}}
+                        </li>
+                        {% endfor %}  
+                        {% empty %}
+                        <ul>
+                            <li><p style="color: red">Title(s) not found!</p></li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>       
+            </div>
+            {% endfor %}
+        </div>
 
-        {{message}}
-
-    {% endfor %}
-
-    <div class="textbox">
-
-      {% for topic in topic_results %} 
-      <ul>
-        <b><a href="{% url 'note:topic_view' topic.id %}">{{topic.topic}}</a></b><a onclick="return confirm('Proceed with delete?')" href="delete/{{topic.id}}" id="{{topic.id}}"><button href type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
-      
-          {% for note in topic.one.all %}
-          <li>
-              {{note.note}}
-          </li>
-        {% endfor %}
-    </ul>
-    {% empty %}
-    <ul>
-        <li><p style="color: red">Title not found!</p></li>
-    </ul>
-    
-    {% endfor %}
-   
-    </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
